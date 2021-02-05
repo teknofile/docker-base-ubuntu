@@ -32,6 +32,7 @@ pipeline {
           env.CODE_URL = 'https://github.com/' + env.TKF_USER + '/' + env.TKF_REPO + '/commit/' + env.GIT_COMMIT
           env.DOCKERHUB_LINK = 'https://hub.docker.com/r/' + env.DOCKERHUB_IMAGE + '/tags'
           env.IMAGE = env.DOCKERHUB_IMAGE
+          env.META_TAG = env.GITHUB_DATA + '-' + "focal"
         }
       }
     }
@@ -42,7 +43,7 @@ pipeline {
         stage('Build X86_64') {
           steps {
             echo "Running on node: ${NODE_NAME}"
-            sh "docker build --no-cache --pull -t ${IMAGE}:amd64-${METATAG} ."
+            sh "docker build --no-cache --pull -t ${IMAGE}:amd64-${META_TAG} ."
             // TODO: Tag/Push images
           }
         }
