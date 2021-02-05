@@ -1,5 +1,8 @@
 FROM --platform=$BUILDPLATFORM alpine:3.12 as rootfs-stage
 
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
+
 # environment
 # Can prob pass this in via a --build-arg param, for testing its fine for now
 ENV REL=focal
@@ -13,10 +16,10 @@ RUN apk add --no-cache \
         xz
 
 # grab base tarball
-RUN mkdir /root-out && \
-      curl -o \
-      /rootfs.tar.gz -L \
-      https://partner-images.canonical.com/core/${REL}/current/ubuntu-${REL}-core-cloudimg-${ARCH}-root.tar.gz
+RUN mkdir /root-out
+RUN echo "Grabbing: https://partner-images.canonical.com/core/${REL}/current/ubuntu-${REL}-core-cloudimg-${ARCH}-root.tar.gz"
+RUN curl -o /rootfs.tar.gz -L https://partner-images.canonical.com/core/${REL}/current/ubuntu-${REL}-core-cloudimg-${ARCH}-root.tar.gz
+
 RUN tar xf \
         /rootfs.tar.gz -C \
         /root-out
