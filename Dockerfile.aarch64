@@ -3,7 +3,7 @@ FROM alpine:3.12 as rootfs-stage
 # environment
 # Can prob pass this in via a --build-arg param, for testing its fine for now
 ENV REL=focal
-ENV ARCH=amd64
+ENV ARCH=arm64
 
 # install packages for the base root builder
 RUN apk add --no-cache \
@@ -31,7 +31,7 @@ LABEL maintainer="TheLamer"
 
 # set version for s6 overlay
 ARG OVERLAY_VERSION="v2.1.0.2"
-ARG OVERLAY_ARCH="amd64"
+ARG OVERLAY_ARCH="aarch64"
 
 # add s6 overlay
 ADD https://github.com/just-containers/s6-overlay/releases/download/${OVERLAY_VERSION}/s6-overlay-${OVERLAY_ARCH}-installer /tmp/
