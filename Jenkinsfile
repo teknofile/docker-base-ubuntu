@@ -45,7 +45,7 @@ pipeline {
             // TODO: Tag/Push images
           }
         }
-
+/*
         stage('Build armhf') {
           agent {
             label 'ARMHF'
@@ -57,7 +57,8 @@ pipeline {
             // TODO: Tag/Push images
           }
         }
-
+*/
+/*
         stage('Build arm64') {
           agent {
             label 'ARM64'
@@ -69,6 +70,7 @@ pipeline {
             // TODO: Tag/Push images
           }
         }
+*/
       }
     }
   }
